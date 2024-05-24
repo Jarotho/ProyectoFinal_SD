@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    <h1>Resultados de Búsqueda para la ciudad {{ ciudad }}</h1>
+    
+    <h2>Información del Clima:</h2>
+    <p>Temperatura: {{ clima_info.temp }}°C</p>
+    <p>Velocidad del viento: {{ clima_info.vel_viento }} m/s</p>
+    <p>Latitud: {{ clima_info.latitud }}</p>
+    <p>Longitud: {{ clima_info.longitud }}</p>
+    <p>Descripción: {{ clima_info.descripcion }}</p>
+
+    <h2>Criterios de Búsqueda:</h2>
+    <p>Radio de búsqueda: {{ radius }} km</p>
+    <p>Comodidades:</p>
+    <ul>
+    {% for amenity in amenities %}
+        <li>{{ amenity }}</li>
+    {% endfor %}
+    </ul>
+    <p>Clasificaciones:</p>
+    <p>Mínimo de estrellas: {{ min_stars }}</p>
+    <p>Máximo de estrellas: {{ max_stars }}</p>
+
+    <h2>Hoteles encontrados:</h2>
+    {% if hoteles_info %}
+    <ul>
+    {% for hotel in hoteles_info %}
+        <li>
+            <strong>Nombre:</strong> {{ hotel.nombre }}<br>
+            <strong>Dirección:</strong> {{ hotel.direccion }}
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron hoteles con los criterios especificados.</p>
+    {% endif %}
+
+    <h2>Tours y Actividades:</h2>
+    {% if tours_info %}
+    <ul>
+    {% for tour in tours_info %}
+        <li>
+            <strong>Nombre:</strong> {{ tour.name }}<br>
+            <strong>Descripción:</strong> {{ tour.descripcion }}<br>
+            <strong>Precio:</strong> {{ tour.price }} €
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron tours y actividades en el área especificada.</p>
+    {% endif %}
+
+
+    <h2>Precios de Vuelos:</h2>
+    {% if precio_vuelo %}
+    <ul>
+        {% for vuelo in precio_vuelo.data %}
+        <li>
+            <strong>Fecha de Salida:</strong> {{ vuelo.departureDate }}<br>
+            <strong>Precio:</strong> {{ vuelo.priceMetrics[0].amount }} {{ vuelo.currencyCode }}<br>
+            <strong>Tipo de Viaje:</strong> {{ vuelo.oneWay|default(false) and 'Solo Ida' or 'Ida y Vuelta' }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron precios de vuelos con los criterios especificados.</p>
+    {% endif %}
+
+    <h2>Conversión de Divisas:</h2>
+    <p>Cantidad a convertir: {{ cantidad }}</p>
+    <p>Moneda de origen: {{ moneda_origen }}</p>
+    <p>Moneda de destino: {{ moneda_destino }}</p>
+    <p>Cantidad convertida: {{ cantidad_convertida }}</p>
+
+    <button onclick="window.location.href='/'">Volver a la búsqueda</button>
+</body>
+</html>

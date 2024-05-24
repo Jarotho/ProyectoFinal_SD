@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima, Hoteles, Tipo de Cambio y Precios de Vuelos</title>
+</head>
+<body>
+    <h1>Consulta de Clima, Hoteles, Tipo de Cambio y Precios de Vuelos</h1>
+    <form action="/" method="post">
+        <label for="ciudad">Ingrese su ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+        <br>
+        <label for="radius">Radio de búsqueda (en km):</label>
+        <input type="number" id="radius" name="radius" value="1">
+        <br>
+        <label for="min_stars">Mínimo de estrellas:</label>
+        <select id="min_stars" name="min_stars">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <label for="max_stars">Máximo de estrellas:</label>
+        <select id="max_stars" name="max_stars">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <label>Comodidades:</label>
+        <br>
+        <input type="checkbox" id="swimming_pool" name="amenities" value="SWIMMING_POOL">
+        <label for="swimming_pool">Piscina</label>
+        <br>
+        <input type="checkbox" id="spa" name="amenities" value="SPA">
+        <label for="spa">Spa</label>
+        <br>
+        <input type="checkbox" id="fitness_center" name="amenities" value="FITNESS_CENTER">
+        <label for="fitness_center">Gimnasio</label>
+        <br>
+        <label for="cantidad">Cantidad a convertir:</label>
+        <input type="number" id="cantidad" name="cantidad" step="0.01" required>
+        <br>
+        <label for="moneda_origen">Moneda de origen:</label>
+        <select id="moneda_origen" name="moneda_origen">
+            <option value="USD">Dólar Estadounidense (USD)</option>
+            <option value="MXN">Peso Mexicano (MXN)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <!-- Agrega más opciones según sea necesario -->
+        </select>
+        <br>
+        <label for="moneda_destino">Moneda de destino:</label>
+        <select id="moneda_destino" name="moneda_destino">
+            <option value="USD">Dólar Estadounidense (USD)</option>
+            <option value="MXN">Peso Mexicano (MXN)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <!-- Agrega más opciones según sea necesario -->
+        </select>
+        <br>
+        <h2>Búsqueda de Precios de Vuelo:</h2>
+        <label for="ciudad_origen">Ciudad de Origen:</label>
+        <input type="text" id="ciudad_origen" name="ciudad_origen" required>
+        <br>
+        <label for="ciudad_destino">Ciudad de Destino:</label>
+        <input type="text" id="ciudad_destino" name="ciudad_destino" required>
+        <br>
+        <label for="fecha">Fecha de Salida:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <br>
+        <label for="moneda">Moneda:</label>
+        <select id="moneda" name="moneda">
+            <option value="USD">Dólar Estadounidense (USD)</option>
+            <option value="MXN">Peso Mexicano (MXN)</option>
+            <option value="EUR">Euro (EUR)</option>
+        <br>
+        <label for="solo_ida">Solo Ida:</label>
+        <input type="checkbox" id="solo_ida" name="solo_ida" value="true" checked>
+        <br>
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>
