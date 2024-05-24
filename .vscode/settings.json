@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "ProyectoFinal_SD"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
