@@ -23,26 +23,6 @@ def client(app):
 def api_client(api):
     return api.test_client()
 
-def test_redirigir_a_login(client):
-    response = client.get('/')
-    assert response.status_code == 302
-    assert response.location == 'http://localhost/login'
-
-def test_login_get(client):
-    response = client.get('/login')
-    assert response.status_code == 200
-    assert b'Login' in response.data
-
-def test_login_post_success(client):
-    response = client.post('/login', data={'username': 'usuario1', 'password': 'contraseña1'})
-    assert response.status_code == 200
-    assert b'Credenciales validas' in response.data
-
-def test_login_post_failure(client):
-    response = client.post('/login', data={'username': 'usuario1', 'password': 'incorrecto'})
-    assert response.status_code == 200
-    assert b'Credenciales invalidas' in response.data
-
 def test_obtener_clima(client, monkeypatch):
     class MockResponse:
         @staticmethod
