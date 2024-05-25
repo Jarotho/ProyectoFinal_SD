@@ -1,5 +1,5 @@
 # Integrantes del equipo
 
-- Wilbert Manzur Tello 
-- Jaroth Jose Moo Pan 
-- Esteban Vargas Alonso 
+- [Wilbert Manzur Tello](http://example.net/)
+- [Jaroth Jose Moo Pan](https://github.com/Jarotho)
+- [Esteban Vargas Alonso](https://github.com/Esteban-Vargas)
