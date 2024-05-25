@@ -55,8 +55,8 @@ def login():
 
 # Ruta para la página principal
 
-client_id = 'MzyUPLsXSzKhjEqy0WP0AYVW5BqFrUYJ'
-client_secret = 'kRRtByvKB14WB7sP'
+client_id = '5GNLnoWWuG4Xflo2QLmy5TytaKtSB30W'
+client_secret = 'RrGI8waS7Av09fAy'
 
 def obtener_token(client_id, client_secret):
     url = "https://test.api.amadeus.com/v1/security/oauth2/token"
