@@ -1,9 +1,60 @@
 from flask import Flask, render_template, request
 import requests
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+import bcrypt
+from flask import redirect
+
 
 app = Flask(__name__)
 
-# Credenciales de la API de Amadeus
+@app.route('/')
+def redirigir_a_login():
+    return redirect('/login')
+
+USUARIOS = {
+    'usuario1': bcrypt.hashpw('contraseña1'.encode('utf-8'), bcrypt.gensalt()),
+    'usuario2': bcrypt.hashpw('contraseña2'.encode('utf-8'), bcrypt.gensalt())
+}
+
+# Función para autenticar usuarios
+def autenticar(username, password):
+    #print("Intento de inicio de sesión con usuario:", username)
+    #print("Contraseña proporcionada:", password)
+    
+    if username in USUARIOS:
+        stored_password = USUARIOS[username]
+        #print("Contraseña almacenada:", stored_password)
+        
+        if bcrypt.checkpw(password.encode('utf-8'), stored_password):
+            #print("¡Contraseña válida!")
+            return True
+        else:
+            #print("Contraseña incorrecta")
+            return False
+    else:
+       # print("Usuario no encontrado")
+        return False
+# Ruta para la página de login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print("USUARIOS:", USUARIOS)
+        print("Username:", username)
+        print("Password:", password)
+        print("La respuesta de la atentticación es la sigueite")
+        print(autenticar(username, password))
+        if autenticar(username, password):
+            # Aquí podrías redirigir al usuario a otra página después del login exitoso
+            return render_template('index.html', error='Credenciales validas')
+        else:
+            return render_template('login.html', error='Credenciales inválidas')
+    else:
+        return render_template('login.html', error=None)
+
+# Ruta para la página principal
+
 client_id = 'MzyUPLsXSzKhjEqy0WP0AYVW5BqFrUYJ'
 client_secret = 'kRRtByvKB14WB7sP'
 
@@ -26,7 +77,7 @@ def obtener_token(client_id, client_secret):
 # Obtén el token de acceso al iniciar la aplicación
 token = obtener_token(client_id, client_secret)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
         # Capturar campos del formulario
